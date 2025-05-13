@@ -1,0 +1,11 @@
+future==1.0.0
+gurux-common==1.0.13
+gurux_dlms==1.0.181
+gurux_net==1.0.23
+gurux_serial==1.0.21
+iso8601==2.1.0
+pyserial==3.5
+PyYAML==6.0.2
+serial==0.0.97
+setuptools==80.4.0
+wheel==0.45.1
