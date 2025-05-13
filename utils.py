@@ -73,10 +73,14 @@ def load_object_list(client, path=None, obis_filter=None):
         ln     = item["logicalName"]
         ver    = item.get("version", 0)
         attrs  = item.get("readable", [])
-
+        obis_found = []
         if obis_filter is not None:
             if ln not in obis_filter:
+                if set(obis_found) == set(obis_filter):
+                    break
                 continue
+        else:
+            obis_found.append(ln)
 
         try:
             obj = client.createObject(ObjectType(cls_id))
