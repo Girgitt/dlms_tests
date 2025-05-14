@@ -68,6 +68,7 @@ def load_object_list(client, path=None, obis_filter=None):
         return False
 
     serial = json.loads(path.read_text())
+    filter_matched = False
     for item in serial:
         cls_id = item["class_id"]
         ln     = item["logicalName"]
@@ -76,10 +77,13 @@ def load_object_list(client, path=None, obis_filter=None):
         obis_found = []
         if obis_filter is not None:
             if ln not in obis_filter:
-                if set(obis_found) == set(obis_filter):
-                    break
+                if filter_matched:
+                    if set(obis_found) == set(obis_filter):
+                        break
+                filter_matched = False
                 continue
         else:
+            filter_matched = True
             obis_found.append(ln)
 
         try:
